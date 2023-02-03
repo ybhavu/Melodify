@@ -1,0 +1,121 @@
+
+body {
+    background-color: rgb(0, 0, 0);
+    align-items: center;  
+}
+ 
+
+.head{
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  font-family: Inria, sans-serif;
+  transform: translate(-50%, -50%);
+  color: orange;
+  font-size: 55px;
+}
+
+.head2{
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  font-family: Inria, sans-serif;
+  transform: translate(-50%, -50%);
+  color: orange;
+  font-size: 30px;
+}
+
+.photo img{
+  height: 275px;
+  width:600px;
+  top: 48%;
+}
+
+
+.head3{
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  font-family: Inria, sans-serif;
+  transform: translate(-50%, -50%);
+  color: orange;
+  font-size: 45px;
+}
+
+.vid{
+  display: block;
+  margin-left: 620px;
+  margin-right: auto;
+  margin-top: 200px;
+  margin-bottom: auto;
+  /* width: 50%;
+  height: 50%; */
+}
+
+.output{
+    position:absolute;
+    margin-top: 400px;
+    margin-right: 200px;
+    top:30%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    /* background-image: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb); */
+    padding: 5px 10px;
+    /* padding-top: 5px; */
+    font-size: 20px;
+}
+
+
+
+#myDIV {
+  /* width: 100%; */
+  padding: 10px;
+  text-align: center;
+  color: black;
+  font-family: Inria, sans-serif;
+  background-color: rgb(127, 116, 82);
+  margin-top: 650px;
+}
+
+
+@media (max-width: 360px){
+  .photo img{
+    height: 150px;
+    width:300px;
+    top: 48%;
+  }
+
+  .head3{
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    font-family: Inria, sans-serif;
+    transform: translate(-50%, -50%);
+    color: orange;
+    font-size: 25px;
+  }
+
+  .head2{
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    font-family: Inria, sans-serif;
+    transform: translate(-50%, -50%);
+    color: orange;
+    font-size: 20px;
+  }
+
+  .output{
+    position:absolute;
+    /* margin-top: 200px;
+    margin-right: 200px; */
+    top:25%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    /* background-image: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb); */
+    padding: 5px 10px;
+    /* padding-top: 5px; */
+    font-size: 20px;
+}
+
+}

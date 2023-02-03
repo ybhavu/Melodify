@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>About</title>
+	<link rel="stylesheet" type="text/css" href="../static/css/style_about.css">
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/bootstrap-icons.svg">
+
+</head>
+</head>
+<body>
+
+	<!---home section--->
+	<section class="home" id="home">
+		<div class="home-text">
+			<h1><span>WELCOME</span> to the world of Melodies!</h1>
+			<p>Melodify is a facial-expression recognition system that helps you listen to songs according to the mood you have!</p>
+			<a href="#" class="btn">Music</a>
+		</div>
+
+		<div class="home-img">
+			<img src="../static/images/home_music1.png">
+		</div>
+	</section>
+
+	<!---container section--->
+	<section class="container">
+		<div class="main-text">
+			<h2>7 Different Expressions</h2>
+		</div>
+
+		<div class="container-box">
+			<div class="c-mainbx">
+				<div class="container-text">
+					<p style="font-size:30px">&#128540; Happy</p>
+				</div>
+			</div>
+
+			<div class="c-mainbx">
+				<div class="container-text">
+					<p style="font-size:30px">&#128532; Sad</p>
+				</div>
+			</div>
+
+			<div class="c-mainbx">
+				<div class="container-text">
+					<p style="font-size:30px">&#128545; Angry</p>
+				</div>
+			</div>
+
+			<div class="c-mainbx">
+				<div class="container-text">
+					<p style="font-size:30px">&#128556; Disgusted</p>   
+				</div>
+			</div>
+
+
+			<div class="c-mainbx">
+				<div class="container-text">
+					<p style="font-size:30px">&#128562; Surprised</p>
+				</div>
+			</div>
+
+			<div class="c-mainbx">
+				<div class="container-text">
+					<p style="font-size:30px">&#128552; Fear</p>
+				</div>
+			</div>
+
+			<div class="c-mainbx">
+				<div class="container-text">
+					<p style="font-size:30px">&#128528; Neutral</p>
+				</div>
+			</div>
+
+		</div>
+	</section>
+
+	
+
+	<!---scroll top--->
+	<a href="#home" class="scroll-top">
+		<i class='bx bx-up-arrow-alt' ></i>
+	</a>
+
+	<script src="https://unpkg.com/scrollreveal"></script>
+
+	<!---custom js link--->
+	<!-- <script type="text/javascript" src="js/script.js"></script> -->
+	<script type="text/javascript">
+		const sr = ScrollReveal ({
+		distance: '60px',
+		duration: 2500,
+		reset: true
+		});
+
+		sr.reveal('.home-text',{delay:200, origin:'left'});
+		sr.reveal('.home-img',{delay:200, origin:'right'});
+
+		sr.reveal('.container',{delay:200, origin:'bottom'});
+	</script>
+
+</body>
+</html>
