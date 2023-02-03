@@ -3,3 +3,4 @@ keras==2.8.0
 numpy==1.21.1
 opencv_python==4.5.5.64
 tensorflow==2.8.0
+gunicorn==20.1.0
