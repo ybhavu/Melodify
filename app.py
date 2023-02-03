@@ -8,8 +8,8 @@ import cv2
 import numpy as np
 import statistics as st
 
-face_classifier = cv2.CascadeClassifier(r'C:\Users\Diksha\OneDrive\Desktop\ML\Melodify_new\haarcascade_frontalface_default.xml')
-classifier =load_model(r'C:\Users\Diksha\OneDrive\Desktop\ML\Melodify_new\model.h5')
+face_classifier = cv2.CascadeClassifier(r'haarcascade_frontalface_default.xml')
+classifier =load_model(r'model.h5')
 
 emotion_labels = ['angry','disgust','fear','happy','neutral', 'sad', 'surprise']
 
