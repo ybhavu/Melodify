@@ -14,7 +14,7 @@ classifier =load_model(r'model.h5')
 emotion_labels = ['angry','disgust','fear','happy','neutral', 'sad', 'surprise']
 
 app=Flask(__name__)
-camera=cv2.VideoCapture(0)
+camera=cv2.VideoCapture(-1)
 
 
 final_emotion = ""
