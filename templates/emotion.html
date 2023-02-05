@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/style_emot.css" />
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <!-- <title>Happy</title> -->
+</head>
+<body>
+    <style>
+        a { color: #000000; 
+            text-decoration: none
+        } /* CSS link color */
+      </style>
+    <form action="/emo" method="post" class="emo-form">
+        
+        {% if predicted_emotion %}
+        <h1 class = "head3">You look {{predicted_emotion}}  </h1>
+        <h1 class="head2">Find your playlist for this mood</h1>
+       
+        <div class="photo">
+            <img src="../static/images/music-notes-on-black-background.jpg">
+        </div>
+        
+        <div class="output">
+            <a href = "/{{predicted_emotion}}" method="post" class="btn1">Songs</a>
+        </div>
+        
+        {%endif%}
+
+        <!-- {% if predicted_emotion == "Neutral" %}
+        <h1 class = "head" >arey ,muskurado zara </h1>
+        {% endif %} -->
+        
+    </form>
+
+    
+</body>
+</html>
