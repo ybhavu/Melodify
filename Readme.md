@@ -9,13 +9,13 @@
 4. Enjoy songs !
 
 ## Tech Stack
-**Frontend:** Html, css, Javascript</br>
-**Backend:** Python, Flask<br/>
-**Libraries:** Numpy, cv2, statistics, tensorflow, keras<br/>
+**Frontend :** `Html, css, Javascript`</br>
+**Backend :** `Python, Flask`<br/>
+**Libraries :** `Numpy, cv2, statistics, tensorflow, keras`<br/>
 
 
 ## Challenges we ran into
 It was a challenging task to get the website to access 7 song templates from the songs button based on the emotion recognized. Dynamic links were used as a means to access the templates for the songs corresponding to the output of the model.
 
 ## What's next for **Moodify**
-The next step is to improve the model's accuracy and enhance the UI/UX of the web app.
+The next step is to further improve the model's accuracy and enhance the UI/UX of the web app.
