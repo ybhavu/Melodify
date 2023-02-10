@@ -17,5 +17,5 @@
 ## Challenges we ran into
 It was a challenging task to get the website to access 7 song templates from the songs button based on the emotion recognized. Dynamic links were used as a means to access the templates for the songs corresponding to the output of the model.
 
-## What's next for **Moodify**
+## What's next for **Melodify**
 The next step is to further improve the model's accuracy and enhance the UI/UX of the web app.
