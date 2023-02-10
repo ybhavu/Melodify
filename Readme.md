@@ -11,7 +11,7 @@
 ## Tech Stack
 **Frontend:** Html, css, Javascript</br>
 **Backend:** Python, Flask<br/>
-**Libraries:** Scipy, Numpy<br/>
+**Libraries:** Numpy, cv2, statistics, tensorflow, keras<br/>
 
 
 ## Challenges we ran into
