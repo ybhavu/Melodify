@@ -1,5 +1,7 @@
 # Melodify 	
 
+![Banner](banner.gif)
+
 **Melodify** is a web application which is a facial expression recognition-based music suggestion website that cheers up users and saves time while searching for a song that matches their mood.
 1. It recognizes facial expression based on the 7 categories i.e., angry, sad, fear, happy, disgust, surprise and neutral.
 2. Based on the emotion it shows playlist to the user.
