@@ -2,27 +2,20 @@
 <html>
   <head>
     <link rel="stylesheet" href="../static/css/style_emot.css" />
-    <link rel="stylesheet" href="../static/css/style.css" />
   </head>
 
   <body>
     <h1 class="head">Detecting your Emotion!</h1>
-    <div class="vid">
-      <img src="{{ url_for('video') }}" width="35%" height="35%"/>
+    <div style="margin-top: 200px; margin-left: 640px;">
+      <img src="{{ url_for('video') }}" width="40%" height="40%" />
     </div>
-
-    <!-- <button type="button" class="output" id = "mybutton" onclick="validate();">Playlist</button> -->
-    <!-- <a href="" class="output" id = "mybutton" onclick = "validate()"> Playlist </a> -->
-
-    
-    <div class="output" id = "mybutton">
-      <!-- <h2>{{ predicted_emotion}}</h2> -->
-      <h2><a href = "/emo" class="btn1">Mood</a></h2>
+    <div class="output">
+      <h2><a href="/emo" class="btn2">Mood</a></h2>
     </div>
 
     <div id="countdown" class="head2"></div>
     <script>
-      var timeleft = 10;
+      var timeleft = 15;
       var downloadTimer = setInterval(function () {
         if (timeleft <= 0) {
           clearInterval(downloadTimer);
@@ -35,29 +28,5 @@
         timeleft -= 1;
       }, 1000);
     </script>
-<!-- 
-    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script>
-      $(document).ready(function () {
-        $("#mybutton").hide().delay(10000).fadeIn(2200);
-      });
-    </script>
-    <script type="text/javascript">
-      function validate() {
-        // alert("yes")
-        var value = '{{predicted_emotion}}';
-        alert(value)
-        if (value == 'Neutal') {
-          window.location.href = "D:\PROJECTS\Music\emotion_cnn_try\templates\neutral.html";
-        } else {
-          // return false;
-          window.location.href = "D:\PROJECTS\Music\emotion_cnn_try\templates\neutral.html";;
-        }
-      }
-    </script> -->
-
-
-
-
   </body>
 </html>
