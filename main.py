@@ -14,7 +14,17 @@ classifier =load_model(r'model.h5')
 emotion_labels = ['angry','disgust','fear','happy','neutral', 'sad', 'surprise']
 
 app=Flask(__name__)
-camera=cv2.VideoCapture(0)
+for i in range(10):
+    camera = cv2.VideoCapture(i)
+    if camera.isOpened():
+        print(f"Camera found at index {i}")
+        break
+    else:
+        print(f"Failed to open camera at index {i}")
+
+if not camera.isOpened():
+    print("Unable to open camera. Exiting...")
+    exit()
 
 
 final_emotion=""
@@ -133,4 +143,4 @@ def fear():
 
 
 if __name__=="__main__":
-    app.run(debug=True)                   
+    app.run(host='0.0.0.0')                 
