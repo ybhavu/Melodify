@@ -14,7 +14,7 @@
     </div>
     <div class="btn">
       <a href="/about" class="btn1"> About </a>
-      <a href="/detect" class="btn1" id="snap">Let's Start</a>
+      <a href="/detect" class="btn1" >Let's Start</a>
     </div>
 
     <div class="img">
@@ -23,22 +23,6 @@
 
 
 
-    <script>
-      const snap = document.getElementById('snap');
-      const canvas = document.getElementById('canvas');
-      const context = canvas.getContext('2d');
-      const width = canvas.width;
-      const height = canvas.height;
-
-      snap.addEventListener('click', function () {
-        navigator.mediaDevices.getUserMedia({ video: true })
-          .then(function (stream) {
-            const video = document.createElement('video');
-            video.srcObject = stream;
-            video.play();
-          });
-      });
-    </script>
-
+   
   </body>
 </html>
