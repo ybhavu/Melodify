@@ -1,4 +1,4 @@
-from flask import Flask, render_template, Response, request
+from flask import Flask, render_template, Response, request, jsonify, redirect, url_for
 import cv2
 import numpy as np
 import base64
@@ -9,6 +9,7 @@ from tensorflow.keras.utils import img_to_array
 from keras.preprocessing import image
 import cv2
 import numpy as np
+import time
 import statistics as st
 
 app = Flask(__name__)
@@ -106,8 +107,10 @@ def send_frames():
 @app.route('/video')
 def video():
     return Response(generate_frames(cv2.VideoCapture(0)), mimetype='multipart/x-mixed-replace; boundary=frame')
+
 @app.route('/emo')
 def emo():
+    time.sleep(3)
     final_call()
     return render_template("emotion.html", predicted_emotion = final_emotion) 
 
