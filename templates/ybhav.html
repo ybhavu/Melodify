@@ -1,36 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="../static/css/style_emot.css" />
+    <title>Camera Streaming Demo</title>
 </head>
 <body>
-    <h1 class="head">Click on start to start detecting your emotion!</h1>
-    <video id="video" width="540" height="380" style="margin-top: 180px; margin-left: 580px;" autoplay></video>
+    <h1>Camera Streaming Demo</h1>
+    <video id="video" width="640" height="480" autoplay></video>
     <canvas id="canvas" width="640" height="480" style="display: none;"></canvas>
-    <button id="start" class="output">Start</button>
-    
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+    <button onclick="location.href='/emo'">redirect</button>
     <script>
         const video = document.getElementById('video');
         const canvas = document.getElementById('canvas');
         const startButton = document.getElementById('start');
+        const stopButton = document.getElementById('stop');
         const framesToSend = 10;  // Number of frames to send
         let framesCaptured = 0;
 
-        function stopCameraStreamAndRedirect() {
+        startButton.onclick = function() {
+            navigator.mediaDevices.getUserMedia({video: true})
+                .then(stream => {
+                    video.srcObject = stream;
+                })
+                .catch(err => {
+                    console.error(err);
+                });
+        };
+
+        stopButton.onclick = function() {
             video.srcObject.getTracks().forEach(track => {
                 track.stop();
             });
             video.srcObject = null;
-            clearInterval(intervalID);
-            window.location.href = "/emo";
-    //         fetch('/emo', {
-    // method: 'POST',
-    // headers: {
-    //     'Content-Type': 'application/json'
-    // },
-// })  
-            
-        }
+        };
 
         function sendFrames() {
             const context = canvas.getContext('2d');
@@ -53,15 +56,14 @@
 
             framesCaptured += 1;
             if (framesCaptured >= framesToSend) {
-                stopCameraStreamAndRedirect();
+                clearInterval(intervalID);
             }
         }
 
         let intervalID;
         function startSendingFrames() {
             framesCaptured = 0;
-            intervalID = setInterval(sendFrames, 1000);  // Send frames every 0.5 seconds
-            setTimeout(stopCameraStreamAndRedirect, 15000);  // Stop camera stream and redirect after 15 seconds
+            intervalID = setInterval(sendFrames, 500);  // Send frames every 0.5 seconds
         }
 
         startButton.onclick = function() {
@@ -73,6 +75,14 @@
                 .catch(err => {
                     console.error(err);
                 });
+        };
+
+        stopButton.onclick = function() {
+            video.srcObject.getTracks().forEach(track => {
+                track.stop();
+            });
+            video.srcObject = null;
+            clearInterval(intervalID);
         };
     </script>
 </body>

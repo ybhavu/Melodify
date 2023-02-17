@@ -1,35 +1,79 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style1.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="../static/css/style_emot.css" />
 </head>
 <body>
-<div class="display-cover">
-    <video autoplay></video>
-    <canvas class="d-none"></canvas>
+    <h1 class="head">Click on start to start detecting your emotion!</h1>
+    <video id="video" width="540" height="380" style="margin-top: 180px; margin-left: 580px;" autoplay></video>
+    <canvas id="canvas" width="640" height="480" style="display: none;"></canvas>
+    <button id="start" class="output">Start</button>
+    
+    <script>
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const startButton = document.getElementById('start');
+        const framesToSend = 10;  // Number of frames to send
+        let framesCaptured = 0;
 
-    <div class="video-options">
-        <select name="" id="" class="custom-select">
-            <option value="">Select camera</option>
-        </select>
-    </div>
+        function stopCameraStreamAndRedirect() {
+            video.srcObject.getTracks().forEach(track => {
+                track.stop();
+            });
+            video.srcObject = null;
+            clearInterval(intervalID);
+            window.location.href = "/emo";
+    //         fetch('/emo', {
+    // method: 'POST',
+    // headers: {
+    //     'Content-Type': 'application/json'
+    // },
+// })  
+            
+        }
 
-    <img class="screenshot-image d-none" alt="">
+        function sendFrames() {
+            const context = canvas.getContext('2d');
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            const dataURL = canvas.toDataURL('image/jpeg');
+            fetch('/send_frames', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({frame: dataURL})
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(err => {
+                    console.error(err);
+                });
 
-    <div class="controls">
-        <button class="btn btn-danger play" title="Play"><i data-feather="play-circle"></i></button>
-        <button class="btn btn-info pause d-none" title="Pause"><i data-feather="pause"></i></button>
-        <button class="btn btn-outline-success screenshot d-none" title="ScreenShot"><i data-feather="image"></i></button>
-    </div>
-</div>
+            framesCaptured += 1;
+            if (framesCaptured >= framesToSend) {
+                stopCameraStreamAndRedirect();
+            }
+        }
 
-<script src="https://unpkg.com/feather-icons"></script>
-<script src="script.js"></script>
+        let intervalID;
+        function startSendingFrames() {
+            framesCaptured = 0;
+            intervalID = setInterval(sendFrames, 1000);  // Send frames every 0.5 seconds
+            setTimeout(stopCameraStreamAndRedirect, 15000);  // Stop camera stream and redirect after 15 seconds
+        }
+
+        startButton.onclick = function() {
+            navigator.mediaDevices.getUserMedia({video: true})
+                .then(stream => {
+                    video.srcObject = stream;
+                    startSendingFrames();
+                })
+                .catch(err => {
+                    console.error(err);
+                });
+        };
+    </script>
 </body>
 </html>
