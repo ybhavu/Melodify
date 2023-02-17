@@ -40,7 +40,7 @@ def final_call():
 
     print("predicted emotion = ",final_emotion)
 
-    return render_template('emotion.html', predicted_emotion = final_emotion)      
+         
 
 
 
@@ -113,7 +113,9 @@ def video():
 
 @app.route('/emo')
 def emo():
-    return Response(final_call())
+    final_call()
+    global final_emotion
+    return render_template('emotion.html', predicted_emotion = final_emotion) 
     # return render_template("emotion.html", predicted_emotion = final_emotion) 
 
 
