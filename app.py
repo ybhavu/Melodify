@@ -108,11 +108,13 @@ def send_frames():
 def video():
     return Response(generate_frames(cv2.VideoCapture(0)), mimetype='multipart/x-mixed-replace; boundary=frame')
 
+    
+
+
 @app.route('/emo')
 def emo():
-    time.sleep(3)
-    final_call()
-    return render_template("emotion.html", predicted_emotion = final_emotion) 
+    return Response(final_call())
+    # return render_template("emotion.html", predicted_emotion = final_emotion) 
 
 
 @app.route('/happy')
