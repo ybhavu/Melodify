@@ -61,7 +61,7 @@
         function startSendingFrames() {
             framesCaptured = 0;
             intervalID = setInterval(sendFrames, 1000);  // Send frames every 0.5 seconds
-            setTimeout(stopCameraStreamAndRedirect, 10000);  // Stop camera stream and redirect after 15 seconds
+            setTimeout(stopCameraStreamAndRedirect, 5000);  // Stop camera stream and redirect after 15 seconds
         }
 
         startButton.onclick = function() {
