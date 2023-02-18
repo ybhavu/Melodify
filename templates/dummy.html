@@ -52,16 +52,16 @@
                 });
 
             framesCaptured += 1;
-            if (framesCaptured >= framesToSend) {
-                stopCameraStreamAndRedirect();
-            }
+            // if (framesCaptured >= framesToSend) {
+            //     stopCameraStreamAndRedirect();
+            // }
         }
 
         let intervalID;
         function startSendingFrames() {
             framesCaptured = 0;
             intervalID = setInterval(sendFrames, 1000);  // Send frames every 0.5 seconds
-            setTimeout(stopCameraStreamAndRedirect, 3000);  // Stop camera stream and redirect after 15 seconds
+            setTimeout(stopCameraStreamAndRedirect, 10000);  // Stop camera stream and redirect after 15 seconds
         }
 
         startButton.onclick = function() {
