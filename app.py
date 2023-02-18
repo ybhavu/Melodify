@@ -89,7 +89,7 @@ def about():
 
 @app.route('/detect')
 def detect():
-    return render_template('ybhav.html')
+    return render_template('dummy.html')
   
 
 @app.route('/send_frames', methods=['POST'])
