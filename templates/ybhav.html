@@ -64,7 +64,7 @@
         let intervalID;
         function startSendingFrames() {
             framesCaptured = 0;
-            intervalID = setInterval(sendFrames, 500);  // Send frames every 0.5 seconds
+            intervalID = setInterval(sendFrames, 1000);  // Send frames every 0.5 seconds
         }
 
         startButton.onclick = function() {

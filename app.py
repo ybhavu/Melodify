@@ -33,11 +33,42 @@ def generate_frames(camera):
             yield (b'--frame\r\n'
                    b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
+
+def cal(frame):
+    j=0
+    
+    while (j<1):
+        labels = []
+        gray = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
+        faces = face_classifier.detectMultiScale(gray)
+
+        for (x,y,w,h) in faces:
+            cv2.rectangle(frame,(x,y),(x+w,y+h),(0,255,255),2)
+            roi_gray = gray[y:y+h,x:x+w]
+            roi_gray = cv2.resize(roi_gray,(48,48),interpolation=cv2.INTER_AREA)
+
+
+
+            if np.sum([roi_gray])!=0:
+                roi = roi_gray.astype('float')/255.0
+                roi = img_to_array(roi)
+                roi = np.expand_dims(roi,axis=0)
+
+                prediction = classifier.predict(roi)[0]
+                label=emotion_labels[prediction.argmax()]
+                label_position = (x,y)
+                max_index = np.argmax(label)
+                output.append(label)
+                cv2.putText(frame,label,label_position,cv2.FONT_HERSHEY_SIMPLEX,1,(0,255,0),2)
+            else:
+                cv2.putText(frame,'No Faces',(30,80),cv2.FONT_HERSHEY_SIMPLEX,1,(0,255,0),2)       
+        j=j+1
+
+
 def final_call():
     arr = np.array(output)
     global final_emotion
     final_emotion = st.mode(arr)    
-
     print("predicted emotion = ",final_emotion)
 
          
@@ -70,35 +101,7 @@ def send_frames():
 
 
     # do something with the frame here
-    j=0
-    
-    while (j<1):
-        labels = []
-        gray = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
-        faces = face_classifier.detectMultiScale(gray)
-
-        for (x,y,w,h) in faces:
-            cv2.rectangle(frame,(x,y),(x+w,y+h),(0,255,255),2)
-            roi_gray = gray[y:y+h,x:x+w]
-            roi_gray = cv2.resize(roi_gray,(48,48),interpolation=cv2.INTER_AREA)
-
-
-
-            if np.sum([roi_gray])!=0:
-                roi = roi_gray.astype('float')/255.0
-                roi = img_to_array(roi)
-                roi = np.expand_dims(roi,axis=0)
-
-                prediction = classifier.predict(roi)[0]
-                label=emotion_labels[prediction.argmax()]
-                label_position = (x,y)
-                max_index = np.argmax(label)
-                output.append(label)
-                cv2.putText(frame,label,label_position,cv2.FONT_HERSHEY_SIMPLEX,1,(0,255,0),2)
-            else:
-                cv2.putText(frame,'No Faces',(30,80),cv2.FONT_HERSHEY_SIMPLEX,1,(0,255,0),2)       
-        j=j+1
- 
+    cal(frame)
     return {'success': True}
     
 
@@ -113,8 +116,8 @@ def video():
 
 @app.route('/emo')
 def emo():
-    final_call()
     global final_emotion
+    final_call()
     return render_template('emotion.html', predicted_emotion = final_emotion) 
     # return render_template("emotion.html", predicted_emotion = final_emotion) 
 
