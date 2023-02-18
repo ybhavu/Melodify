@@ -117,8 +117,9 @@ def video():
 @app.route('/emo')
 def emo():
     global final_emotion
-    time.sleep(3)
     final_call()
+    time.sleep(3)
+    
     return render_template('emotion.html', predicted_emotion = final_emotion) 
     # return render_template("emotion.html", predicted_emotion = final_emotion) 
 

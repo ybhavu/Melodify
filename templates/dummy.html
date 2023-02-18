@@ -13,7 +13,7 @@
         const video = document.getElementById('video');
         const canvas = document.getElementById('canvas');
         const startButton = document.getElementById('start');
-        const framesToSend = 2;  // Number of frames to send
+        const framesToSend = 3;  // Number of frames to send
         let framesCaptured = 0;
 
         function stopCameraStreamAndRedirect() {
@@ -60,8 +60,8 @@
         let intervalID;
         function startSendingFrames() {
             framesCaptured = 0;
-            intervalID = setInterval(sendFrames, 100);  // Send frames every 0.5 seconds
-            setTimeout(stopCameraStreamAndRedirect, 15000);  // Stop camera stream and redirect after 15 seconds
+            intervalID = setInterval(sendFrames, 1000);  // Send frames every 0.5 seconds
+            setTimeout(stopCameraStreamAndRedirect, 3000);  // Stop camera stream and redirect after 15 seconds
         }
 
         startButton.onclick = function() {
