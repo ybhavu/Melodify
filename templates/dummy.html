@@ -60,7 +60,7 @@
         let intervalID;
         function startSendingFrames() {
             framesCaptured = 0;
-            intervalID = setInterval(sendFrames, 1000);  // Send frames every 0.5 seconds
+            intervalID = setInterval(sendFrames, 100);  // Send frames every 0.5 seconds
             setTimeout(stopCameraStreamAndRedirect, 15000);  // Stop camera stream and redirect after 15 seconds
         }
 
